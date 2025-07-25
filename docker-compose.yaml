@@ -1,0 +1,17 @@
+services:
+  vtigeropensource:
+    ports:
+      - "${host_port:-80}:80"
+    image: vtigercrm/vtigercrm-8.3.0:latest
+    environment:
+      mysql_user: ${mysql_user:-admin}
+      mysql_pass: ${mysql_pass:-admin}
+    volumes:
+      - vtiger_source_volume:/var/www/html/
+      - vtiger_mysql_data_volume:/var/lib/mysql
+
+volumes:
+  vtiger_source_volume:          # care must be taken while naming the volumes.Please check your existing volume names
+    name:   vtiger_source_volume 
+  vtiger_mysql_data_volume:
+    name: vtiger_mysql_data_volume
